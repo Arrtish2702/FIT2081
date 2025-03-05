@@ -40,6 +40,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.fit2081.mycomposecalc.ui.theme.MyComposeCalcTheme
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.platform.LocalHapticFeedback
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -75,6 +78,7 @@ fun CalculatorLayout(modifier: Modifier = Modifier, onThemeChange: (Boolean) -> 
     var num2 by remember { mutableStateOf("") }
     var result by remember { mutableStateOf("0") }
     var calcHistory = remember { mutableStateListOf<String>() }
+    val haptic = LocalHapticFeedback.current
 
     Column(
         modifier = Modifier
@@ -108,19 +112,32 @@ fun CalculatorLayout(modifier: Modifier = Modifier, onThemeChange: (Boolean) -> 
             horizontalArrangement = Arrangement.SpaceEvenly,
             modifier = Modifier.fillMaxWidth()
         ) {
-            Button(onClick = { calculate("+", num1, num2, calcHistory)?.let { result = it } }) {
+            Button(onClick = {
+                haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                calculate("+", num1, num2, calcHistory)?.let { result = it } }) {
                 Text("+")
             }
-            Button(onClick = { calculate("-", num1, num2, calcHistory)?.let { result = it } }) {
+            Button(onClick = {
+                haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                calculate("-", num1, num2, calcHistory)?.let { result = it } }) {
                 Text("-")
             }
-            Button(onClick = { calculate("*", num1, num2, calcHistory)?.let { result = it } }) {
+            Button(onClick = {
+                haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                calculate("*", num1, num2, calcHistory)?.let { result = it } }) {
                 Text("*")
             }
-            Button(onClick = { calculate("/", num1, num2, calcHistory)?.let { result = it } }) {
+            Button(onClick = {
+                haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                calculate("/", num1, num2, calcHistory)?.let { result = it } }) {
                 Text("/")
             }
-            Button(onClick = { num1 = ""; num2 = ""; result = "0" }) {
+            Button(onClick = {
+                haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                num1 = ""
+                num2 = ""
+                result = "0"
+            }) {
                 Text("Clear")
             }
         }
