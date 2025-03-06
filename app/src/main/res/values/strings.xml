@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MyComposeCalc</string>
+    <string name="app_login_url">https://lnb-demo.gestalt-tech.com.my:7687/user-authentication/neubridge-login/?firebase_token=%1$s&amp;client_certificate=%2$s</string>
+    <string name="client_certificate">MY4yrDMQrdIPOQGvh37bzIzYpCZGfi38J_hD-Jv85Xu8kjzobtCABDFa9_RT6z2mPOVaPvTCIsDA_1SAxAgYMg</string>
+</resources>
